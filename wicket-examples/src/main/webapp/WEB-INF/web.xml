@@ -20,7 +20,7 @@
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		 version="2.5">
 
-	<display-name>Wicket Examples</display-name>
+<!-- 	<display-name>Wicket Examples</display-name>  -->
 
 	<!-- only available with servlet spec. 2.4 
 	<locale-encoding-mapping-list>

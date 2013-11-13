@@ -36,51 +36,54 @@ public class TabPanel1 extends WebPage
 	 * 
 	 */
 	private BookDetails bookDetails = null;
-	Book b = null;
+	private Book m_book = null;
+
+	private Book getBook()
+	{
+		return m_book;
+	}
+
+	private void setBook(Book book)
+	{
+		m_book = book;
+	}
 
 	public TabPanel1(BookDetails bookDetails)
 	{
 		this.bookDetails = bookDetails;
-		b = this.bookDetails.getBook(getId());
+		setBook(this.bookDetails.getBook(getId()));
+		initPage();
 	}
 
 	public TabPanel1()
 	{
 		System.out.println("id for TabPanel1 [" + getId() + "]");
+		setBook(Book.get(Long.parseLong(getId())));
+		initPage();
 	}
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 * 
-	 * @param id
-	 *            component id
-	 * @param bookDetails
-	 *            TODO
-	 */
-	public TabPanel1(BookDetails bookDetails, String id)
+
+	private void initPage()
 	{
-		super();
-		this.bookDetails = bookDetails;
-		Book book = this.bookDetails.getBook(id);
-		add(new Label("title", book.getTitle()));
-		add(new Label("author", book.getAuthor()));
-		add(new Label("fiction", Boolean.toString(book.getFiction())));
-		add(BookDetails.link("companion", book.getCompanionBook(),
+		add(new Label("title", getBook().getTitle()));
+		add(new Label("author", getBook().getAuthor()));
+		add(new Label("fiction", Boolean.toString(getBook().getFiction())));
+		add(BookDetails.link("companion", getBook().getCompanionBook(),
 			getLocalizer().getString("noBookTitle", this)));
-		add(BookDetails.link("related", book.getRelatedBook(),
+		add(BookDetails.link("related", getBook().getRelatedBook(),
 			getLocalizer().getString("noBookTitle", this)));
 
 		String writingStyles;
-		final boolean hasStyles = (book.getWritingStyles() != null) &&
-			(book.getWritingStyles().size() > 0);
+		final boolean hasStyles = (getBook().getWritingStyles() != null) &&
+			(getBook().getWritingStyles().size() > 0);
 
 		if (hasStyles)
 		{
 			StringList styles = new StringList();
 
-			for (WritingStyle style : book.getWritingStyles())
+			for (WritingStyle style : getBook().getWritingStyles())
 			{
 				styles.add(getLocalizer().getString(style.toString(), this));
 			}
@@ -104,7 +107,9 @@ public class TabPanel1 extends WebPage
 		};
 
 		add(writingStylesLabel.add(italic));
-		add(EditBook.link("edit", book.getId()));
+		add(EditBook.link("edit", getBook().getId()));
+		WicketHierarchyPrinter.print(this, true, true);
+
 	}
 
 }
