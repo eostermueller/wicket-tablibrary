@@ -17,8 +17,9 @@ The app starts fine, just like the wicket "libray".
 But when you select one of the books in the initial list, 
 PageTabbedPanel displays the content for one tab, but none of the tabs themselves.
 
-Expected behavior:  once you select a book, you see details for that book in one 'active' tab, along with two other inactive tabs.
-Current behavior:  once you select a book, you see details for that book but none of the 3 tabs.
+__Expected behavior__:  once you select a book, you see details for that book in one 'active' tab, along with two other inactive tabs.
+
+__Current behavior__:  once you select a book, you see details for that book but none of the 3 tabs.
 
 Thanks in advance for any help on this.
 
